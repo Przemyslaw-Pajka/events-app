@@ -1,0 +1,83 @@
+.eventCard {
+  font-size: 16px;
+  position: relative;
+}
+.eventCard:hover {
+  cursor: pointer;
+}
+.eventCardHover {
+  background: rgba(0, 0, 0, 0.9);
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  color: #fff;
+  font-size: 42px;
+}
+.eventCard:hover .eventCardHover {
+  opacity: 1;
+}
+.eventCard article {
+  position: relative;
+}
+.eventCardHeader {
+  text-align: center;
+}
+.eventCardHeader span {
+  font-weight: 700;
+}
+
+.eventCard .eventCardHeader .eventCardDate {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  left: 20px;
+  font-weight: 700;
+}
+.eventCard .eventCardHeader {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 4px 0px;
+  align-items: center;
+  background-color: #ff8d00;
+  font-size: 18px;
+  color: #fff;
+  width: 100%;
+  left: 0;
+  top: 0;
+}
+.eventCard .eventCardHeader .eventCardTitle {
+  width: 100%;
+  font-weight: 700;
+}
+.eventCard .eventCardHeader .eventCardPromoter,
+.eventCard .eventCardHeader .eventCardPlace {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 15px;
+}
+.eventCard .eventCardHeader .eventCardPromoter span {
+  font-weight: 700;
+}
+.eventCard .eventImage {
+  /* height: 50%; */
+  height: 42%;
+}
+.eventCard .eventImage img {
+  height: 100%;
+}
+.eventCard .eventCardDescription {
+  padding: 20px 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  font-size: 16px;
+}

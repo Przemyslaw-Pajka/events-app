@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Baloo 2", cursive;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+.App {
+  text-align: center;
+}
