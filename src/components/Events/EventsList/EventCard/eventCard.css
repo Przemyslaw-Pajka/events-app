@@ -1,6 +1,11 @@
 .eventCard {
   font-size: 16px;
   position: relative;
+  background: #fff;
+  max-width: 390px;
+  height: min-content;
+  border: 1px solid #cfcaca;
+  box-shadow: 1px 1px 7px #646464;
 }
 .eventCard:hover {
   cursor: pointer;
@@ -13,6 +18,8 @@
   position: absolute;
   display: flex;
   align-items: center;
+  justify-content: center;
+  flex-direction: column;
   z-index: 50;
   top: 0;
   left: 0;
@@ -24,6 +31,7 @@
 }
 .eventCard article {
   position: relative;
+  padding: 20px 10px;
 }
 .eventCardHeader {
   text-align: center;
@@ -53,31 +61,52 @@
   top: 0;
 }
 .eventCard .eventCardHeader .eventCardTitle {
-  width: 100%;
+  width: 271px;
+  margin: 0 auto;
   font-weight: 700;
+  max-height: 84px;
+  overflow-y: hidden;
 }
-.eventCard .eventCardHeader .eventCardPromoter,
-.eventCard .eventCardHeader .eventCardPlace {
+.eventCard .eventCardHeader .eventCardInfo {
   display: block;
-  width: 100%;
+  width: 271px;
+  margin: 0 auto;
   text-align: center;
   font-size: 15px;
 }
-.eventCard .eventCardHeader .eventCardPromoter span {
+.eventCard .eventCardHeader .eventCardInfo span {
   font-weight: 700;
 }
 .eventCard .eventImage {
-  /* height: 50%; */
-  height: 42%;
+  height: 32%;
 }
 .eventCard .eventImage img {
   height: 100%;
+  display: block;
+  object-fit: cover;
 }
 .eventCard .eventCardDescription {
-  padding: 20px 10px;
   overflow: hidden;
   display: -webkit-box;
-  -webkit-line-clamp: 5;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 6;
   -webkit-box-orient: vertical;
   font-size: 16px;
+}
+.eventCardHover button {
+  background: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 18px;
+  padding: 15px 10px;
+  cursor: pointer;
+  font-weight: 700;
+}
+.eventCardHover button:hover {
+  background: #fff;
+  color: #000;
+  transition: 0.2s;
+}
+.eventCardHover > button:not(:last-child) {
+  margin-bottom: 25px;
 }

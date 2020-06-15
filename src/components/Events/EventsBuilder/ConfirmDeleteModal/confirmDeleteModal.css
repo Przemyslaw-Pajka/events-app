@@ -1,0 +1,16 @@
+.confirmDeleteModal p {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+.confirmDeleteModal .row {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+.confirmDeleteModal .row button {
+  margin: 0;
+  width: 70px;
+}

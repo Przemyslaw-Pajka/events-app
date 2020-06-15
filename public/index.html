@@ -32,6 +32,9 @@
       href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+    <script></script>
     <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -144,9 +147,9 @@
       // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
 
       function getCityLocation(cityLocation) {
-        document.getElementById("cityLocationInput").value = cityLocation;
+        document.getElementById("eventLocality").value = cityLocation;
       }
-      function initAutocomplete() {
+      function initAutocomplete(isNavigatorNeed = true, eventCoords) {
         let infoWindow = new google.maps.InfoWindow();
         var geocoder = new google.maps.Geocoder();
         var map = new google.maps.Map(document.getElementById("map"), {
@@ -155,15 +158,21 @@
           mapTypeId: "roadmap",
         });
         var pos;
-
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(
             function (position) {
-              pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-              };
+              if (isNavigatorNeed) {
+                pos = {
+                  lat: position.coords.latitude,
+                  lng: position.coords.longitude,
+                };
+              } else {
+                pos = {
+                  lat: parseFloat(eventCoords.lat),
+                  lng: parseFloat(eventCoords.lng),
+                };
+              }
               document.getElementById("latFld").value = pos.lat;
               document.getElementById("lngFld").value = pos.lng;
 
@@ -171,10 +180,9 @@
               infoWindow.setContent("Location found.");
 
               infoWindow.open(map);
-              //
-              console.log(infoWindow);
+
               geocodeLatLng(geocoder, map, infoWindow, marker, pos);
-              //
+
               map.setCenter(pos);
             },
             function () {
@@ -215,7 +223,6 @@
         // add a click event handler to the map object
         google.maps.event.addListener(map, "click", function (event) {
           var geocoder = new google.maps.Geocoder();
-          console.log("clicked");
 
           // display the lat/lng in your form's lat/lng fields
           document.getElementById("latFld").value = event.latLng.lat();
@@ -237,7 +244,6 @@
         searchBox.addListener("places_changed", function () {
           var places = searchBox.getPlaces();
           map.setCenter(places[0].geometry.location);
-          console.log(places[0].geometry.location.lat());
           document.getElementById(
             "latFld"
           ).value = places[0].geometry.location.lat();
@@ -253,10 +259,6 @@
           var marker_position = places[0].geometry.location;
 
           marker.setPosition(marker_position);
-          console.log("in search box", {
-            lat: places[0].geometry.location.lat(),
-            lng: places[0].geometry.location.lng(),
-          });
           //
           geocodeLatLng(geocoder, map, infoWindow, marker, {
             lat: places[0].geometry.location.lat(),
@@ -264,7 +266,7 @@
           });
           //
           toggleBounce();
-          map.fitBounds(bounds);
+          // map.fitBounds(bounds);
         });
         function placeMarker(location, geocoder, infoWindow, pos) {
           marker.position = location;
@@ -294,17 +296,14 @@
             if (results[0]) {
               map.setZoom(11);
 
-              //console.log(results[0].address_components);
               let filtered = results[0].address_components.filter((element) => {
                 for (let i in element.types) {
                   return element.types[i] == "locality";
                 }
               });
-              console.log("filtered element is: ", filtered[0].long_name);
+              console.log(filtered[0]);
               getCityLocation(filtered[0].long_name);
-              //getCityLocation(results[0].address_components[2].long_name);
 
-              console.log(results[0]);
               infowindow.setContent(results[0].formatted_address);
               infowindow.open(map, marker);
             } else {
@@ -316,15 +315,72 @@
         });
       }
     </script>
+    <!-- <script
+     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLfsCnKb5tk6Qd2EyNOWKuf6XfeznAQXw&libraries=places&ensor=true&callback=initAutocomplete"
+     async
+     defer
+   ></script> -->
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLfsCnKb5tk6Qd2EyNOWKuf6XfeznAQXw&libraries=places&ensor=true&callback=initAutocomplete"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCLfsCnKb5tk6Qd2EyNOWKuf6XfeznAQXw&libraries=places&ensor=true"
       async
       defer
     ></script>
     <script>
-      $(function () {
+      window.datePicked = {
+        startDate: {
+          fullDate: null,
+          day: null,
+          month: null,
+          year: null,
+          dayOfWeek: null,
+          monthName: null,
+          monthShort: [],
+        },
+        endDate: {
+          fullDate: null,
+          day: null,
+          month: null,
+          year: null,
+          dayOfWeek: null,
+          monthName: null,
+          monthShort: [],
+        },
+      };
+      let monthNames = [
+        "Styczeń",
+        "Luty",
+        "Marzec",
+        "Kwiecień",
+        "Maj",
+        "Czerwiec",
+        "Lipiec",
+        "Sierpień",
+        "Wrzesień",
+        "Październik",
+        "Listopad",
+        "Grudzień",
+      ];
+      function datePicker() {
+        var today = new Date();
+        var dd = today.getDate();
+
+        var mm = today.getMonth() + 1;
+        var yyyy = today.getFullYear();
+        if (dd < 10) {
+          dd = "0" + dd;
+        }
+
+        if (mm < 10) {
+          mm = "0" + mm;
+        }
+
+        today = mm + "/" + dd + "/" + yyyy;
+        todayDDMMYY = dd + "/" + mm + "/" + yyyy;
+
         $('input[name="date"]').daterangepicker(
           {
+            minDate: todayDDMMYY,
+            autoUpdateInput: false,
             locale: {
               format: "DD/MM/YYYY",
               separator: " - ",
@@ -334,7 +390,7 @@
               toLabel: "Do",
               customRangeLabel: "Custom",
               weekLabel: "W",
-              daysOfWeek: ["Pn", "Wt", "Śr", "Cz", "Pt", "So", "Nd"],
+              daysOfWeek: ["Nd", "Pn", "Wt", "Śr", "Cz", "Pt", "So"],
               monthNames: [
                 "Styczeń",
                 "Luty",
@@ -349,24 +405,69 @@
                 "Listopad",
                 "Grudzień",
               ],
-              firstDay: 0,
+              firstDay: 1,
             },
-            startDate: "28/04/2020",
+            startDate: todayDDMMYY,
             endDate: "05/04/2020",
           },
           function (start, end, label) {
-            console.log(
-              "New date range selected: " +
-                start.format("YYYY-MM-DD") +
-                " to " +
-                end.format("YYYY-MM-DD") +
-                " (predefined range: " +
-                label +
-                ")"
-            );
+            window.datePicked.startDate.fullDate = start.format("DD/MM/YYYY");
+            window.datePicked.startDate.day = start.format("DD");
+            window.datePicked.startDate.month = start.format("MM");
+            window.datePicked.startDate.year = start.format("YYYY");
+            window.datePicked.startDate.date = start._d;
+
+            window.datePicked.endDate.fullDate = end.format("DD/MM/YYYY");
+            window.datePicked.endDate.day = end.format("DD");
+            window.datePicked.endDate.month = end.format("MM");
+            window.datePicked.endDate.year = end.format("YYYY");
+            window.datePicked.endDate.date = end._d;
+
+            if (window.datePicked.startDate.month[0] == 0) {
+              window.datePicked.startDate.monthName =
+                monthNames[window.datePicked.startDate.month[1] - 1];
+            } else {
+              window.datePicked.startDate.monthName =
+                monthNames[window.datePicked.startDate.month - 1];
+            }
+
+            if (window.datePicked.endDate.month[0] == 0) {
+              window.datePicked.endDate.monthName =
+                monthNames[window.datePicked.endDate.month[1] - 1];
+            } else {
+              window.datePicked.endDate.monthName =
+                monthNames[window.datePicked.endDate.month - 1];
+            }
+
+            for (let i = 0; i < 3; i++) {
+              window.datePicked.startDate.monthShort[
+                i
+              ] = window.datePicked.startDate.monthName[i].toUpperCase();
+            }
+
+            endDate = end.format("DD/MM/YYYY");
           }
         );
-      });
+        $(function () {
+          $('input[name="date"]').on("apply.daterangepicker", function (
+            ev,
+            picker
+          ) {
+            $(this).val(
+              picker.startDate.format("DD/MM/YYYY") +
+                " - " +
+                picker.endDate.format("DD/MM/YYYY")
+            );
+          });
+
+          $('input[name="date"]').on("cancel.daterangepicker", function (
+            ev,
+            picker
+          ) {
+            $(this).val("");
+          });
+        });
+      }
     </script>
   </body>
 </html>

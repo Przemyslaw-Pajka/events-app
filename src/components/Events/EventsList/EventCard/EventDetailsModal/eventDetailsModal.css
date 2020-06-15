@@ -34,13 +34,8 @@
 .myOwnModalContent form .form__row input:valid,
 .myOwnModalContent form .form__row textarea:valid,
 .myOwnModalContent form .form__row select:valid {
+  /* background-color: #cbfacb; */
   border: 2px solid #86d786;
-}
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #fff inset !important;
 }
 .myOwnModalContent form label {
   text-align: justify;
@@ -98,6 +93,8 @@ form input[type="file"] {
 .myOwnModalContent form .form__row select,
 .myOwnModalContent form .form__row textarea {
   width: 100%;
+  font-family: "Baloo 2", cursive;
+  font-size: 16px;
 }
 .myOwnModalContent form .form__row textarea {
   width: 100% !important;

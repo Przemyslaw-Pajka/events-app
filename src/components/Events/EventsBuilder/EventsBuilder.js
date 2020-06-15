@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { NewEventContext } from "../NewEventStore/NewEventStore";
 import plus from "./iconmonstr-plus.svg";
 
 const EventsBuilder = (props) => {
@@ -9,7 +10,7 @@ const EventsBuilder = (props) => {
       onClick={() => props.eventModalHandler()}
     >
       <img className="plusIcon" src={plus} />
-      <p>Add Event</p>
+      <p>Dodaj wydarzenie</p>
     </button>
   );
 };
