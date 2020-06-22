@@ -1,61 +1,27 @@
 import React, { useEffect, useState, useContext } from "react";
+import {
+  postImageToImgur,
+  datePicker,
+  selectedDates,
+  googleMaps as initAutocomplete,
+} from "modules/modules";
 import { NewEventContext } from "../../../NewEventStore/NewEventStore";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import axios from "axios";
-import "./eventDetailsModal.css";
+import "components/Events/eventModal.css";
 
-const EventDetailsModal = (props) => {
+export const EventDetailsModal = (props) => {
   let [newEvent, setNewEvent] = useContext(NewEventContext);
   let [isCircle, setIsCircle] = useState(false);
   let [eventState, setEventState] = useState({ ...props.event });
-  let [imageObjState, setImageObjState] = useState(props.event.eventImageObj);
   let imgContainer;
   let tempImgLink = props.event.eventImgLink;
   let isImgChanged = false;
 
-  // ************************************************* *************************************************
-  const myAsync = () => {
-    return new Promise((resolve) => {
-      var myHeaders = new Headers();
-      myHeaders.append("Authorization", "Client-ID f6e45a5e8c28826");
-
-      var formdata = new FormData();
-      formdata.append("image", imgContainer);
-
-      var requestOptions = {
-        method: "POST",
-        baseURL: "https://api.imgur.com/3/image",
-        headers: { Authorization: "Client-ID f6e45a5e8c28826" },
-        body: formdata,
-        redirect: "follow",
-        onUploadProgress: (progressEvent) => {
-          setIsCircle(true);
-        },
-      };
-      const instanceAxios = axios.create({
-        baseURL: "https://api.imgur.com/3/image",
-      });
-      // Alter defaults after instance has been created
-      instanceAxios.defaults.headers.common["Authorization"] =
-        "Client-ID f6e45a5e8c28826";
-      instanceAxios
-        .post("https://api.imgur.com/3/image", formdata, requestOptions)
-        .then((response) => {
-          setIsCircle(false);
-          //saveDataForm(response.data.data.link);
-          resolve(response.data.data.link);
-          //props.eventModalHandler();
-        })
-        .catch((error) => console.log("error", error));
-    });
-  };
-
-  // ************************************************* *************************************************
-
   useEffect(() => {
     //initAutoComplete takes 2 arguments only in EventDetailsModal
-    window.initAutocomplete(false, props.event.eventCoords);
-    window.datePicker();
+    initAutocomplete(false, props.event.eventCoords);
+    datePicker();
+    //window.datePicker() it working temporary
   }, []);
   const readFile = (file, img) => {
     const reader = new FileReader();
@@ -77,10 +43,9 @@ const EventDetailsModal = (props) => {
         lat: document.getElementById("latFld").value,
         lng: document.getElementById("lngFld").value,
       },
-      eventDate: window.datePicked.startDate.fullDate
-        ? JSON.parse(JSON.stringify(window.datePicked))
+      eventDate: selectedDates.startDate.fullDate
+        ? JSON.parse(JSON.stringify(selectedDates))
         : props.event.eventDate,
-      // JSON.parse(JSON.stringify(window.datePicked))
       eventImgLink: imgLink ? imgLink : tempImgLink,
       eventImageObj: JSON.parse(
         JSON.stringify(document.getElementById("eventImage").value)
@@ -107,7 +72,10 @@ const EventDetailsModal = (props) => {
       ) : null}
       <button
         className="closeEventModal"
-        onClick={() => props.detailsOpenHandler()}
+        onClick={(e) => {
+          e.stopPropagation();
+          props.detailsOpenHandler();
+        }}
       >
         X
       </button>
@@ -119,7 +87,7 @@ const EventDetailsModal = (props) => {
           onSubmit={(e) => {
             e.preventDefault();
             if (isImgChanged) {
-              myAsync().then((link) => {
+              postImageToImgur(imgContainer, setIsCircle).then((link) => {
                 saveDataForm(link);
                 props.detailsOpenHandler();
               });
@@ -263,27 +231,24 @@ const EventDetailsModal = (props) => {
           <input
             type="text"
             id="latFld"
-            defaulvalue={parseFloat(props.event.eventCoords.lat)}
+            defaultValue={parseFloat(props.event.eventCoords.lat)}
             className="latFld"
           />
           <input
             type="text"
             id="lngFld"
-            defaulvalue={parseFloat(props.event.eventCoords.lng)}
+            defaultValue={parseFloat(props.event.eventCoords.lng)}
             className="lngFld"
           />
           <input
             id="latlng"
             className="latlng"
             type="text"
-            defaulvalue="40.714224,-73.961452"
+            defaultValue="40.714224,-73.961452"
           />
-
           <button className="addEventBtn">Zmień wydarzenie</button>
         </form>
       </div>
     </div>
   );
 };
-
-export default EventDetailsModal;

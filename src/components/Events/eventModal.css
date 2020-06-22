@@ -1,7 +1,6 @@
 .myOwnModalContent {
   padding: 80px 15px;
-  height: inherit;
-  overflow-y: scroll;
+  height: initial;
   display: flex;
   flex-direction: column;
 }
@@ -43,7 +42,7 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px #fff inset !important;
 }
 .myOwnModalContent form label {
-  text-align: justify;
+  text-align: left;
   font-weight: 700;
 }
 ::placeholder {

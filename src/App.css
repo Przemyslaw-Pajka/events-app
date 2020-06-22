@@ -6,7 +6,15 @@
 body {
   font-family: "Baloo 2", cursive;
 }
-
+a * {
+  pointer-events: none;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 img {
   width: 100%;
   height: auto;
@@ -28,7 +36,9 @@ button {
   left: 20vw;
   z-index: 150;
   box-shadow: 1px 1px 7px #646464;
+  overflow-y: scroll;
 }
+
 .closeEventModal {
   display: flex;
   justify-content: center;

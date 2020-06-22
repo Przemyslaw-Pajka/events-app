@@ -29,7 +29,7 @@
 .eventCard:hover .eventCardHover {
   opacity: 1;
 }
-.eventCard article {
+.eventCard .eventCardDescription {
   position: relative;
   padding: 20px 10px;
 }
@@ -46,6 +46,9 @@
   position: absolute;
   left: 20px;
   font-weight: 700;
+}
+.eventCard .eventCardHeader address {
+  font-style: normal;
 }
 .eventCard .eventCardHeader {
   display: flex;

@@ -1,9 +1,11 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
 import "./events.css";
-import EventsSearch from "./EventsSearch/EventsSearch";
-import EventsBuilder from "./EventsBuilder/EventsBuilder";
-import EventsList from "./EventsList/EventsList";
-import AddEventModal from "./EventsBuilder/AddEventModal/AddEventModal";
+import {
+  EventsSearch,
+  EventsBuilder,
+  EventsList,
+  AddEventModal,
+} from "components/components";
 
 import { NewEventContext } from "./NewEventStore/NewEventStore";
 const Events = (props) => {
@@ -14,7 +16,6 @@ const Events = (props) => {
   let [isFiltered, setIsFiltered] = useState(false);
   let [isChanged, setIsChanged] = useState(false);
   let newList = [];
-  const firstUpdate = useRef(true);
 
   useEffect(() => {
     setFiltered(newEvent);
@@ -50,8 +51,6 @@ const Events = (props) => {
   };
 
   const filterEventsList = () => {
-    // Use .filter() to determine which items should be displayed
-    // based on the search terms
     if (resultSearch) {
       newList = newEvent.filter((item) => {
         if (
@@ -61,10 +60,8 @@ const Events = (props) => {
           return item;
       });
     } else {
-      // If the search bar is empty, set newList to original task list
       newList = newEvent;
     }
-    // Set the filtered state based on what our rules added to newList
     setFiltered(newList);
   };
 

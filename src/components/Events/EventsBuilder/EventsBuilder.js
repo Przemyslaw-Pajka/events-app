@@ -1,8 +1,7 @@
 import React, { useContext } from "react";
-import { NewEventContext } from "../NewEventStore/NewEventStore";
 import plus from "./iconmonstr-plus.svg";
 
-const EventsBuilder = (props) => {
+export const EventsBuilder = (props) => {
   return (
     <button
       className="eventBuilderCard eventCard"
@@ -14,5 +13,3 @@ const EventsBuilder = (props) => {
     </button>
   );
 };
-
-export default EventsBuilder;

@@ -1,17 +1,17 @@
 import React from "react";
 import "./eventsSearch.css";
-const EventsSearch = (props) => (
+export const EventsSearch = (props) => (
   <div className="eventsSearchContainer">
     <label htmlFor="eventsSearchInput" className="eventsSearchLabel">
-      Wyszukaj wydarzenie:
+      Wyszukaj wydarzenie po nazwie lub kategorii:
     </label>
-    <input
-      id="eventsSearchInput"
-      className="eventsSearchInput"
-      onChange={(event) => props.eventSearch(event.target.value)}
-    />
-    <div className="magnifier"></div>
+    <div className="eventsSearchBox">
+      <input
+        id="eventsSearchInput"
+        className="eventsSearchInput"
+        onChange={(event) => props.eventSearch(event.target.value)}
+      />
+      <div className="magnifier"></div>
+    </div>
   </div>
 );
-
-export default EventsSearch;

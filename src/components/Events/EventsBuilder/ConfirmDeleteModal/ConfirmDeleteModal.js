@@ -1,7 +1,7 @@
 import React from "react";
 import "./confirmDeleteModal.css";
 
-const ConfirmDeleteModal = (props) => (
+export const ConfirmDeleteModal = (props) => (
   <div className="confirmDeleteModal">
     <p>Czy napewno chcesz usunąć wydarzenie?</p>
     <div className="row">
@@ -17,5 +17,3 @@ const ConfirmDeleteModal = (props) => (
     </div>
   </div>
 );
-
-export default ConfirmDeleteModal;

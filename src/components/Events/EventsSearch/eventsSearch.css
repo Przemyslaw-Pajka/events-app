@@ -1,5 +1,6 @@
 .eventsSearchContainer {
   display: flex;
+  flex-direction: column;
   position: relative;
   justify-content: center;
   padding-top: 10px;
@@ -24,9 +25,9 @@
   content: "";
   width: 25px;
   height: 25px;
-  position: relative;
-  left: -3%;
-  top: 8px;
+  position: absolute;
+  top: 6px;
+  right: 10px;
   z-index: 99;
   opacity: 0.7;
   background-image: url("./iconmonstr-magnifier.svg");
@@ -34,7 +35,11 @@
   filter: invert(84%) sepia(32%) saturate(1307%) hue-rotate(313deg)
     brightness(62%) contrast(371%);
 }
-
+.eventsSearchBox {
+  position: relative;
+  width: max-content;
+  margin: 15px auto 0px;
+}
 .eventsSearchInput:focus + .magnifier {
   filter: invert(68%) sepia(95%) saturate(1600%) hue-rotate(522deg)
     brightness(62%) contrast(371%);
