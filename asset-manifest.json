@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/events-app/static/css/main.0abc5b72.chunk.css",
+    "main.js": "/events-app/static/js/main.c81ea4ac.chunk.js",
+    "main.js.map": "/events-app/static/js/main.c81ea4ac.chunk.js.map",
+    "runtime-main.js": "/events-app/static/js/runtime-main.07fed951.js",
+    "runtime-main.js.map": "/events-app/static/js/runtime-main.07fed951.js.map",
+    "static/js/2.18b862d6.chunk.js": "/events-app/static/js/2.18b862d6.chunk.js",
+    "static/js/2.18b862d6.chunk.js.map": "/events-app/static/js/2.18b862d6.chunk.js.map",
+    "index.html": "/events-app/index.html",
+    "precache-manifest.a32d2089436f0640e2fe011fdc243e3c.js": "/events-app/precache-manifest.a32d2089436f0640e2fe011fdc243e3c.js",
+    "service-worker.js": "/events-app/service-worker.js",
+    "static/css/main.0abc5b72.chunk.css.map": "/events-app/static/css/main.0abc5b72.chunk.css.map",
+    "static/js/2.18b862d6.chunk.js.LICENSE.txt": "/events-app/static/js/2.18b862d6.chunk.js.LICENSE.txt",
+    "static/media/eventsSearch.css": "/events-app/static/media/iconmonstr-magnifier.a847fcd1.svg",
+    "static/media/iconmonstr-plus.svg": "/events-app/static/media/iconmonstr-plus.ce98de71.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.07fed951.js",
+    "static/js/2.18b862d6.chunk.js",
+    "static/css/main.0abc5b72.chunk.css",
+    "static/js/main.c81ea4ac.chunk.js"
+  ]
+}
