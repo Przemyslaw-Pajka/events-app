@@ -12,7 +12,7 @@ export const EventCard = (props) => {
   let [isDetailsOpen, setIsDetailsOpen] = useState(false);
   let [differenceInDays, setDifferenceInDays] = useState(false);
 
-  let node = useRef();
+  let thisEventCard = useRef();
 
   useEffect(() => {
     setDifferenceInDays(
@@ -26,10 +26,10 @@ export const EventCard = (props) => {
 
   return (
     <article
-      ref={node}
+      ref={thisEventCard}
       className="eventCard"
       onClick={(e) => {
-        node.current.classList.add("open");
+        thisEventCard.current.classList.add("open");
         e.stopPropagation();
       }}
     >
@@ -70,79 +70,37 @@ export const EventCard = (props) => {
 
       {/* ******************************************************* */}
       <figure className="eventImage">
-        {props.event.eventImgLink ? (
-          <img
-            className="eventImageSrc"
-            src={props.event.eventImgLink}
-            alt=""
-          />
-        ) : (
-          <img src="./pkoMaraton.jpg" />
-        )}
+        <img className="eventImageSrc" src={props.event.eventImgLink} alt="" />
       </figure>
       <header className="eventCardHeader">
         <time
           dateTime={props.event.eventDate.startDate.fullDate}
           className="eventCardDate"
         >
-          {/* <span>SIE</span> 30 */}
-          {props.event.eventDate ? (
-            <React.Fragment>
-              <span>{props.event.eventDate.startDate.monthShort}</span>
-              <span>{props.event.eventDate.startDate.day}</span>
-            </React.Fragment>
-          ) : (
-            <React.Fragment>
-              <span>SIE</span>
-              <span>30</span>
-            </React.Fragment>
-          )}
+          <React.Fragment>
+            <span>{props.event.eventDate.startDate.monthShort}</span>
+            <span>{props.event.eventDate.startDate.day}</span>
+          </React.Fragment>
         </time>
-        <h3 className="eventCardTitle">
-          {props.event.eventName ? props.event.eventName : "41. PKO Półmaraton"}
-        </h3>
+        <h3 className="eventCardTitle">{props.event.eventName}</h3>
         <div className="eventCardInfo">
           Organizator:
-          {props.event.eventPromoter ? (
-            <span> {props.event.eventPromoter} </span>
-          ) : (
-            <span> PKO</span>
-          )}
+          <span> {props.event.eventPromoter} </span>
         </div>
         <address className="eventCardInfo">
           Miejsce:
-          {props.event.eventLocality ? (
-            <span> {props.event.eventLocality} </span>
-          ) : (
-            <span> Szczecin</span>
-          )}
+          <span> {props.event.eventLocality} </span>
         </address>
         <div className="eventCardInfo">
-          {props.event.eventLocality ? (
-            <React.Fragment>
-              {checkTimeToEventStart(
-                differenceInDays,
-                props.event.eventDate.endDate.date
-              )}
-            </React.Fragment>
-          ) : (
-            <span> Szczecin</span>
-          )}
+          <React.Fragment>
+            {checkTimeToEventStart(
+              differenceInDays,
+              props.event.eventDate.endDate.date
+            )}
+          </React.Fragment>
         </div>
       </header>
-      <p className="eventCardDescription">
-        {props.event.eventDescription ? (
-          props.event.eventDescription
-        ) : (
-          <span>
-            30 sierpnia „Pobiegniemy razem” w 41 edycji PKO Półmaraton Szczecin
-            na dystansie: półmaratonu oraz biegu na 10 km. Półmaraton Szczecin
-            przez wiele lat pozyskał grono wiernych , lokalnych biegaczy, którym
-            bardzo dziękujemy za starty i promocję największej imprezy biegowej
-            w regionie.
-          </span>
-        )}
-      </p>
+      <p className="eventCardDescription">{props.event.eventDescription}</p>
     </article>
     //  END OF EventCard
   );

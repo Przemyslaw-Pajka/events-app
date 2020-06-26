@@ -11,10 +11,7 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-//TODO: eventCardHover. Jesli klikniemy na mobilce to pokazuje sie eventCardHover. Teraz dziala odrazu przy 1 kliknieciu odpala sie opcja
-//FIXME: MOBILNE: jeśli kliknę na eventCard to wyswietla sie eventCardHover, jesli klikne w element na zewnatrz to eventCardHover sie chowa
-// DESKTOP: jesli najade kursorem na eventCard to wysiwetla sie eventCardHover, jesli zjade kursorem gdzie indziej to eventCardHover sie chowa
-//TODO: Poprawić responsywność
+//TODO: Zabezpieczyć API Key
 //TODO: Na samum końcu Code Review
 //TODO: Upload na serwer
 // If you want your app to work offline and load faster, you can change
