@@ -85,8 +85,9 @@
 }
 .eventCard .eventImage img {
   height: 100%;
+  max-height: 350px;
+  object-fit: contain;
   display: block;
-  object-fit: cover;
 }
 .eventCard .eventCardDescription {
   overflow: hidden;
