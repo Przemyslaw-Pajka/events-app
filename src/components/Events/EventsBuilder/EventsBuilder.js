@@ -8,7 +8,7 @@ export const EventsBuilder = (props) => {
       id="eventBuilderCard"
       onClick={() => props.eventModalHandler()}
     >
-      <img className="plusIcon" src={plus} />
+      <img className="plusIcon" src={plus} alt=""/>
       <p>Dodaj wydarzenie</p>
     </button>
   );
