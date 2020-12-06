@@ -65,7 +65,7 @@ export const AddEventModal = (props) => {
         </React.Fragment>
       ) : null}
       <button
-        className="closeEventModal tooltip"
+        className="closeEventModal tooltip focus-visible"
         id="closeEventModal"
         tabIndex="0"
         onClick={() => props.eventModalHandler()}

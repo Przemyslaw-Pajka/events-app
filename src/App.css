@@ -57,7 +57,7 @@ button {
 
 
 /* Tooltip text */
-.tooltip:focus .tooltiptext {
+body.user-is-tabbing .tooltip:focus .tooltiptext {
   width: 120px;
   font-weight: 700;
   font-size: 15px;
@@ -78,6 +78,6 @@ button {
   position: absolute;
 }
 /* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:focus .tooltiptext {
+body.user-is-tabbing .tooltip:focus .tooltiptext {
   visibility: visible;
 }
