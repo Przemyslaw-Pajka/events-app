@@ -13,12 +13,10 @@ const firebaseConfig = {
 const fb = {
   appInit: () => {
     if (!firebase.apps.length) {
-      console.log("Inicjalizacja firebase app...");
       return firebase.initializeApp(firebaseConfig);
     }
   },
   dbInit: () => {
-    console.log("Tworzenie Firestore...");
     return firebase.firestore();
   },
 };
