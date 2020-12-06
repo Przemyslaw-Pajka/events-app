@@ -65,12 +65,15 @@ export const AddEventModal = (props) => {
         </React.Fragment>
       ) : null}
       <button
-        className="closeEventModal"
+        className="closeEventModal tooltip"
         id="closeEventModal"
+        tabIndex="0"
         onClick={() => props.eventModalHandler()}
       >
         X
+        <span class="tooltiptext">Naciśnij enter by zamknąć</span>
       </button>
+     
       <div className="addEventModalContent myOwnModalContent">
         <h3>Dodaj nowe wydarzenie</h3>
         <form
