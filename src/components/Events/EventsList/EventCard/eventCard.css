@@ -10,6 +10,10 @@
 .eventCard:hover {
   cursor: pointer;
 }
+.eventCard:focus-within {
+  outline: 3px solid #0000ff;
+  box-shadow: none;
+}
 .eventCardHover {
   background: rgba(0, 0, 0, 0.9);
   opacity: 0;
