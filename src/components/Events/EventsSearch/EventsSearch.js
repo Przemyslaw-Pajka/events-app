@@ -13,5 +13,6 @@ export const EventsSearch = (props) => (
       />
       <div className="magnifier"></div>
     </div>
+    <div className="eventsSearchInfo">{props.filtered.length ? (<p>Znaleziono wydarzeń: {props.filtered.length}</p>) : (<p>Nie znaleziono żadnych wydarzeń</p>) }</div>
   </div>
 );

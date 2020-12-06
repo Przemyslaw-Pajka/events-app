@@ -74,7 +74,7 @@ const Events = (props) => {
           setIsChanged={setIsChanged}
         />
       ) : null}
-      <EventsSearch eventSearch={eventSearch} />
+      <EventsSearch eventSearch={eventSearch} filtered={filtered}/>
       <h2>Wydarzenia</h2>
       <div className="eventsContainer">
         <EventsBuilder eventModalHandler={eventModalHandler} />
