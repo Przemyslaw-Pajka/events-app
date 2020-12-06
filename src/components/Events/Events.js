@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect, useRef } from "react";
-import "./events.css";
+import "../../styles/components/events.css";
 import {
   EventsSearch,
   EventsBuilder,

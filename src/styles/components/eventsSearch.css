@@ -30,7 +30,7 @@
   right: 10px;
   z-index: 99;
   opacity: 0.7;
-  background-image: url("./iconmonstr-magnifier.svg");
+  background-image: url("../../assets/iconmonstr-magnifier.svg");
   background-repeat: no-repeat;
   filter: invert(84%) sepia(32%) saturate(1307%) hue-rotate(313deg)
     brightness(62%) contrast(371%);

@@ -1,5 +1,5 @@
 import React from "react";
-import "./eventsSearch.css";
+import "../../../styles/components/eventsSearch.css";
 export const EventsSearch = (props) => (
   <div className="eventsSearchContainer">
     <label htmlFor="eventsSearchInput" className="eventsSearchLabel">

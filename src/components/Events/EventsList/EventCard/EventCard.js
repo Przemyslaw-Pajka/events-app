@@ -5,7 +5,7 @@ import {
 } from "modules/modules";
 import { ConfirmDeleteModal, EventDetailsModal } from "components/components";
 
-import "./eventCard.css";
+import "../../../../styles/components/eventCard.css";
 
 export const EventCard = (props) => {
   let [isConfirmOpen, setIsConfirmOpen] = useState(false);

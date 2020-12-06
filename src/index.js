@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import "./mediaQueries.css";
+import "./styles/mediaQueries.css";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(

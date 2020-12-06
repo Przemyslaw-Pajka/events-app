@@ -7,7 +7,7 @@ import {
 } from "modules/modules";
 import { NewEventContext } from "../../../NewEventStore/NewEventStore";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import "components/Events/eventModal.css";
+import "../../../../../styles/components/eventModal.css";
 
 export const EventDetailsModal = (props) => {
   let [newEvent, setNewEvent] = useContext(NewEventContext);

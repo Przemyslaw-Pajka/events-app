@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import plus from "./iconmonstr-plus.svg";
+import plus from "../../../assets/iconmonstr-plus.svg";
 
 export const EventsBuilder = (props) => {
   return (

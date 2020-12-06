@@ -6,7 +6,7 @@ import {
   googleMaps as initAutocomplete,
 } from "modules/modules";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import "components/Events/eventModal.css";
+import "../../../../styles/components/eventModal.css";
 import { NewEventContext } from "../../NewEventStore/NewEventStore";
 import shortid from "shortid";
 
